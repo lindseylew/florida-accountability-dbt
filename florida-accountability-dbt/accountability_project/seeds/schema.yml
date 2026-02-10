@@ -1,0 +1,7 @@
+version: 2
+
+seeds:
+  - name: fl_school_grades_2025
+    config:
+      +all_varchar: true
+      +quote_columns: true
