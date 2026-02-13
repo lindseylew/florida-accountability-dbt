@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_fl_school_grades
+    description: "Staged Florida accountability dataset (cleaned + standardized)."
+
+    columns:
+      - name: district_number
+        tests:
+          - not_null
+
+      - name: school_number
+        tests:
+          - not_null
+
+      - name: school_name
+        tests:
+          - not_null
+
+      - name: graduation_rate_2023_24
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 100
+                inclusive: true
+                where: "graduation_rate_2023_24 is not null"
+
