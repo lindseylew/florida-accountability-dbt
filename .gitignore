@@ -4,3 +4,6 @@ __pycache__/
 .DS_Store
 *.duckdb
 logs/
+target/
+dbt_packages/
+.ipynb_checkpoints/

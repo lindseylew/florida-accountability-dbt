@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: mart_grad_rate_risk
+    columns:
+      - name: school_number
+        tests: [not_null]
+      - name: is_grad_rate_risk
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1]

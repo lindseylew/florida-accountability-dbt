@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: int_school_features
+    columns:
+      - name: is_grad_rate_risk
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+
+
