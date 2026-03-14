@@ -2,9 +2,27 @@
 **A dbt & DuckDB case study in analytical modeling limits and responsible ML decision-making**
 
 ## Project Overview
-This project builds a standardized, test-driven analytics pipelinefor Florida state school accountability data and evaluates the feasibility of predicting graduation-rate risk using structured performance signals.
+This project builds a standardized, test-driven analytics pipeline for Florida state school accountability data and evaluates the feasibility of predicting graduation-rate risk using structured performance signals.
 
 While the original goal included developing a predictive model, analysis revealed that downstream accountability metrics (e.g., letter grades and year-over-year grade changes) largely saturate predictive signal. Rather than forcing model complexity, the project documents where and why modeling stops being useful, and what conditions would be required to justify escalation to machine learning.
+
+---
+
+## Key Findings
+- Letter grade transitions and accountability metrics explain most variance in graduation-rate risk.
+- Rule-based baselines perform similarly to logistic regression.
+- Downstream accountability features saturate predictive signal.
+- As a result, increased model complexity would not materially improve decision usefulness.
+
+---
+
+## Skills Demonstrated
+- Analytical data pipeline design using dbt and DuckDB
+- SQL-based feature engineering for structured datasets
+- Data validation and testing using dbt tests
+- Baseline model evaluation and diagnostic logistic regression
+- Responsible machine learning decision frameworks
+- Reproducible analytics workflows using Git and Python
 
 ---
 
@@ -12,7 +30,7 @@ While the original goal included developing a predictive model, analysis reveale
 1. Build a reproducible analytics pipeline
     - Ingest raw accountability data
     - Standardize and validate fields
-    - Produce analysis-ready tables at a defined grain
+    - Produce analysis-ready tables at the defined analytical grain
 
 2. Define and validate a graduation-rate risk signal
     - Explicit, interpretable risk definition
@@ -26,7 +44,7 @@ While the original goal included developing a predictive model, analysis reveale
 ---
 
 ## Data Grain & Scope
-All analytical models are built a the the grain: 
+All analytical models are built at the grain: 
 `school_number x accountability_year`
 
 Later stages explicitly address one-row-per-school aggregation to support modeling and evaluation.
@@ -34,7 +52,7 @@ Later stages explicitly address one-row-per-school aggregation to support modeli
 ---
 
 ## Tech Stack
-- **dbt** - tranformation logic, testing and documentation
+- **dbt** - transformation logic, testing and documentation
 - **DuckDB** - analytical execution engine
 - **SQL** - feature engineering
 - **Python** - notebook-based exploration and validation
@@ -78,23 +96,23 @@ These checks ensure that downstream modeling decisions are grounded in reliable 
 Before applying machine learning, several baselines were evaluated:
 - Majority-class baseline
 - Rule-based heuristics
-- Logistic regression (diagnositc baseline)
+- Logistic regression (diagnostic baseline)
 
 Evaluation focused on:
 - Precision
 - Recall
 - Lift over base rate
-- Confusion matrix intepretation
+- Confusion matrix interpretation
 
 ---
 
 ## Decision to Stop Escalation
-Rather than introducing more complex models, the project intentionally stops a the baseline stage.
+Rather than introducing more complex models, the project intentionally stops at the baseline stage.
 
 **Why?**
 - The target is defined using accountability outcomes already present in features.
 - Additional model complexity would not add meaningful decision value.
-- This rpresents a *problem-formulation limitation*, not a modeling failure.
+- This represents a *problem-formulation limitation*, not a modeling failure.
 
 This decision reflects responsible ML practice: **knowing when not to model**.
 
@@ -112,15 +130,16 @@ The current pipeline is designed to support this future extension without rework
 ---
 
 ## Project Takeaways
-- Feature engineering ofter matters more than model choice.
+- Feature engineering often matters more than model choice.
 - Baselines are diagnostic tools, not formalities.
 - High accuracy can coexist with zero usefulness.
 - Stopping early is sometimes the correct technical outcome.
-- Well-structured analytics pipelines enable beter modeling decisions, including the decision not to model.
+- Well-structured analytics pipelines enable better modeling decisions, including the decision not to model.
 
 ---
 
 ## Status
 **Version 1 Complete**
-Modeling intentionally contstrained based on empirical findings.
-Future iterations will explore upstream risk prediction where ML is warranted.
+Modeling was intentionally constrained based on empirical findings that downstream accountability features saturate predictive signal.
+
+Future iterations will explore **upstream early-warning predictors** where machine learning could provide operational value.
